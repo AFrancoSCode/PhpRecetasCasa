@@ -56,22 +56,24 @@
                 <?php
                     if(!empty($_GET['Validar'])){
                         if (!empty($_GET['Etiqueta'])){
-                            $query = "SELECT recetas.Id_Receta, recetas.Nombre, recetas.Precio_Prom FROM recetas INNER JOIN recetasetiquetas ON recetas.Id_Receta = recetasetiquetas.Id_Receta AND recetasetiquetas.Id_Etiqueta = ".$_GET['Etiqueta'];
-                            if (!empty($_GET['Nombre'])) $query = $query." AND recetasetiquetas.Id_Receta = (SELECT Id_Receta FROM recetas WHERE recetas.Nombre LIKE '%".$_GET['Nombre']."%')";
-                            if (!empty($_GET['Precio'])) $query = $query." AND recetas.Precio_Prom = ".$_GET['Precio'];
+                            $query = "SELECT recetas.Id_Receta, recetas.Nombre, recetas.Precio_Prom FROM recetas INNER JOIN recetasetiquetas ON recetas.Id_Receta = recetasetiquetas.Id_Receta AND recetasetiquetas.Id_Etiqueta = ".$_GET['Etiqueta']."ORDER BY recetas.Nombre";
+
+                            if (!empty($_GET['Nombre'])) $query = $query." AND recetasetiquetas.Id_Receta = (SELECT Id_Receta FROM recetas WHERE recetas.Nombre LIKE '%".$_GET['Nombre']."%') ORDER BY recetas.Nombre";
+
+                            if (!empty($_GET['Precio'])) $query = $query." AND recetas.Precio_Prom = ".$_GET['Precio']."ORDER BY recetas.Nombre";
                         }
                         else{
                             $query = "SELECT * FROM recetas WHERE ";
                             if (!empty($_GET['Nombre'])){
-                                $query = $query."recetas.Nombre LIKE '%".$_GET['Nombre']."%'";
-                                if (!empty($_GET['Precio'])) $query = $query." AND recetas.Precio_Prom = ".$_GET['Precio'];
+                                $query = $query."recetas.Nombre LIKE '%".$_GET['Nombre']."%' ORDER BY recetas.Nombre";
+                                if (!empty($_GET['Precio'])) $query = $query." AND recetas.Precio_Prom = ".$_GET['Precio']."ORDER BY recetas.Nombre";
                             }
                             else{
                                 if (!empty($_GET['Precio'])){
-                                    $query = $query."recetas.Precio_Prom = ".$_GET['Precio'];
+                                    $query = $query."recetas.Precio_Prom = ".$_GET['Precio']."ORDER BY recetas.Nombre";
                                 }
                                 else{
-                                    $query = "SELECT * FROM recetas";
+                                    $query = "SELECT * FROM recetas ORDER BY recetas.Nombre";
                                 }
                             }
                         }
@@ -123,7 +125,7 @@
                     <label for="inputPassword6" class="col-form-label">Etiquetas</label>
                 </div>
                 <div class="col-auto">
-                    <select class="form-select" name="Etiqueta" required>
+                    <select class="form-select" name="Etiqueta">
                         <option value="" selected>Selecciona Etiqueta</option>
                         <?php
                             $query = "SELECT * FROM etiquetas";

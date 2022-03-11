@@ -13,10 +13,12 @@
             die("Query Failed!");
         }
     }
-    $query_Etiqueta = "INSERT INTO recetasetiquetas(Id_Etiqueta, Id_Receta) VALUES (".$_GET['Etiqueta'].", (SELECT LAST_INSERT_ID()))";
-    $result = mysqli_query($conn, $query_Etiqueta);
-    if(!$result){
-        die("Query Failed!");
+    if(!empty($_GET['Etiqueta'])){
+        $query_Etiqueta = "INSERT INTO recetasetiquetas(Id_Etiqueta, Id_Receta) VALUES (".$_GET['Etiqueta'].", (SELECT LAST_INSERT_ID()))";
+        $result = mysqli_query($conn, $query_Etiqueta);
+        if(!$result){
+            die("Query Failed!");
+        }
     }
 
     header("Location: ../Views/Administrador/RecetasAdmin.php");
