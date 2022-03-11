@@ -18,7 +18,7 @@
                 <h1 class="text-light display-4 text-center m-0">Historial</h1>
             </div>
         </a>
-        <a href="" class="d-flex align-items-center justify-content-center rounded">
+        <a href="EtiquetasAdmin.php" class="d-flex align-items-center justify-content-center rounded">
             <div class="box-option rounded d-flex align-items-center justify-content-center">
                 <i class="bi bi-pencil-fill"></i>
                 <h1 class="text-light display-4 text-center m-0" style="font-size: 50px;">Etiquetas</h1>

@@ -113,38 +113,39 @@
             <h1>Crear nueva receta</h1>
             <hr class="border border-dark">
             <form class="row g-3 d-flex align-items-center justify-content-center" action="../../Procedimientos/CrearReceta.php" method="GET">
-            <div class="col-auto">
-                <label for="inputPassword6" class="col-form-label">Nombre Receta</label>
-            </div>
-            <div class="col-auto">
-                <input type="text" id="inputPassword6" class="form-control" name="Nombre" autocomplete="off" required>
-            </div>
-            <div class="col-auto">
-                <label for="inputPassword6" class="col-form-label">Etiquetas</label>
-            </div>
-            <div class="col-auto">
-                <select class="form-select" name="Etiqueta" required>
-                    <option value="" selected>Selecciona Etiqueta</option>
-                    <?php
-                        $query = "SELECT * FROM etiquetas";
-                        $result_tasks = mysqli_query($conn, $query);
+                <div class="col-auto">
+                    <label for="inputPassword6" class="col-form-label">Nombre Receta</label>
+                </div>
+                <div class="col-auto">
+                    <input type="text" id="inputPassword6" class="form-control" name="Nombre" autocomplete="off" required>
+                </div>
+                <div class="col-auto">
+                    <label for="inputPassword6" class="col-form-label">Etiquetas</label>
+                </div>
+                <div class="col-auto">
+                    <select class="form-select" name="Etiqueta" required>
+                        <option value="" selected>Selecciona Etiqueta</option>
+                        <?php
+                            $query = "SELECT * FROM etiquetas";
+                            $result_tasks = mysqli_query($conn, $query);
 
-                        while($row = mysqli_fetch_array($result_tasks)){ ?>
+                            while($row = mysqli_fetch_array($result_tasks)){ ?>
 
-                        <option value="<?php echo $row['Id_Etiqueta'] ?>"><?php echo $row['Nombre'] ?></option>
+                            <option value="<?php echo $row['Id_Etiqueta'] ?>"><?php echo $row['Nombre'] ?></option>
 
-                    <?php } ?>
-                </select>
-            </div>
-            <div class="col-auto">
-                <label for="inputPassword6" class="col-form-label">Precio Promedio</label>
-            </div>
-            <div class="col-auto">
-                <input type="number" id="inputPassword6" class="form-control" name="Precio">
-            </div>
-            <div class="col-auto">                
-                <button type="submit" class="btn btn-primary" name="Validar" value="Validar">Crear</button>
-            </div>
+                        <?php } ?>
+                    </select>
+                </div>
+                <div class="col-auto">
+                    <label for="inputPassword6" class="col-form-label">Precio Promedio</label>
+                </div>
+                <div class="col-auto">
+                    <input type="number" id="inputPassword6" class="form-control" name="Precio">
+                </div>
+                <div class="col-auto">                
+                    <button type="submit" class="btn btn-primary" name="Validar" value="Validar">Crear</button>
+                </div>
+            </form>
         </div>
         <a href="../Administrador/IndexAdmin.php" class="btn btn-primary mt-5">Regresar</a>
     </div>
