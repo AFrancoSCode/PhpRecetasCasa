@@ -9,5 +9,5 @@
         }
     }
 
-    header('Location: ../Procedimientos/EditarReceta.php?id='.$_GET['idReceta']);
+    // header('Location: ../Procedimientos/EditarReceta.php?id='.$_GET['idReceta']);
 ?>

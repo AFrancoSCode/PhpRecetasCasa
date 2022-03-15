@@ -35,7 +35,7 @@
             </div>
         </form>
 
-        <form class="border border-dark rounded p-3 m-3" action="ActualizarEtiquetas.php">
+        <form class="border border-dark rounded p-3 m-3" action="">
             <input type="hidden" value="<?php echo $row['Id_Receta'] ?>" name="idReceta">
             <div class="mb-3">
                 <p class="form-label">Etiquetas</p>
@@ -57,7 +57,7 @@
             </div>
             <div class="mb-3">
                 <label for="Precio" class="form-label">Asignar nueva etiqueta</label>
-                <select class="form-select" name="etiquetaNueva" required>
+                <select class="form-select" name="etiquetaNueva" id="etiquetaSeleccionada" required>
                     <?php
                         $queryEtiqueta = "SELECT Id_Etiqueta, Nombre FROM etiquetas WHERE etiquetas.Id_Etiqueta NOT IN (SELECT Id_Etiqueta FROM recetasetiquetas WHERE recetasetiquetas.Id_Receta = ".$row['Id_Receta'].")";
                         $result_tasksEtiquetas = mysqli_query($conn, $queryEtiqueta);
@@ -70,7 +70,7 @@
                 </select>
             </div>
             <div class="d-grid gap-2">                
-                <button type="submit" class="btn btn-primary">Asignar</button>
+                <button type="submit" class="btn btn-primary" id="Asignar">Asignar</button>
             </div>
         </form>
     </div>
@@ -88,6 +88,10 @@
         <?php if(!empty($row['Precio_Prom'])){ ?>
             document.getElementById('Precio').value = <?php echo $row['Precio_Prom'] ?>;
         <?php } ?>
+
+        document.querySelector('#Asignar').addEventListener('click', () => {
+            fetch(`http://localhost/RecetasCasa/Procedimientos/ActualizarEtiquetas.php?etiquetaNueva=${document.querySelector('#etiquetaSeleccionada').value}`, {method: "GET"});
+        });
     </script>
 
 <?php include("../Include/Footer.php") ?>
